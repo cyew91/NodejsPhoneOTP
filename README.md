@@ -1,2 +1,4 @@
-# NodejsPhoneOTP
-Allow user to use phone OTP verification for user login, user registration and etc.
+### Two Factor Authentication With Nexmo
+
+This repository will help to create two factor authentication with nexmo in node.js
+

@@ -1,0 +1,12 @@
+body{
+  background-color:white;
+}
+
+body > div{
+  margin: auto;
+  margin-top: 20%;
+}
+
+h3{
+  text-align: center;
+}

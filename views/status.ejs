@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Status</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+      <section id="main" role="main">
+          <p class="status">
+            <% if(message){ %>
+             <%= message %>
+            <% } %> </p>
+          <% if(locals.requestId) { %>
+            Try with another PIN if you have one.<br>
+            <form action="/confirm" method="post">
+              <div class="fa fa-key"></div>
+              <input type="number" name="pin" placeholder="1234" required>
+              <input type="hidden" name="requestId" value="<%= requestId %>" >
+              <input type="submit" value="Verify PIN">
+            </form>
+          <% } %>
+      
+        </section>
+  </body>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</html>

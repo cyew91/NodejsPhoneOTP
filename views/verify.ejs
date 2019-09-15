@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>verify</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <form action="/confirm" method="post">
+      <input type="tel" name="pin" placeholder="1234" required>
+      <input type="hidden" name="requestId" value="<%= requestId %>" >
+      <input type="submit" value="Verify PIN">
+  </form>
+  
+  </body>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</html>
