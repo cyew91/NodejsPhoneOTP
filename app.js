@@ -24,14 +24,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(cors());
 
 app.use(index);
 app.use(register);
 app.use(user);
 app.use(verify);
 app.use(status);
-app.use(cors());
-cors({ credentials: true, origin: true });
 
 app.use((error, req, res, next) => {
    let errorMessage = "Something went wrong...";
