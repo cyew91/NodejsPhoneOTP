@@ -193,4 +193,17 @@ router.post("/api/user/track-product-view", async (req, res, next) => {
    }
 });
 
+router.get("/api/user/most-view-product-all", async (req, res, next) => {
+   // const userId = req.params.userId;
+   // console.log("userId: ", userId);
+   try {
+      const productList = await dbConnPool.query(
+         `SELECT product_id, COUNT(*) AS view_count FROM user_product_view_log GROUP BY product_id ORDER BY COUNT(*) DESC LIMIT 10`,
+      );
+      customResponse.success(res, { productList });
+   } catch (error) {
+      next(error);
+   }
+});
+
 module.exports = router;
