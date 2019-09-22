@@ -91,6 +91,21 @@ router.delete("/api/user/:userId/address/:addressId", async (req, res, next) => 
 });
 
 /**
+ * Get all user's address by type
+ */
+router.get("/api/user/:userId/type/:type", async (req, res, next) => {
+   try {
+      const userId = req.params.userId;
+      const type = req.params.type;
+
+      const addresses = await dbConnPool.query(`SELECT * FROM user_address WHERE user_id=? AND type=? AND is_active=1`, [userId, type]);
+      customResponse.success(res, { addresses });
+   } catch (error) {
+      next();
+   }
+});
+
+/**
  * Get all user's address
  */
 router.get("/api/user/:userId/addresses", async (req, res, next) => {
@@ -141,6 +156,9 @@ router.post("/api/user/address", async (req, res, next) => {
    }
 });
 
+/**
+ * Get user's most view product
+ */
 router.get("/api/user/most-view-product/:userId", async (req, res, next) => {
    try {
       const userId = req.params.userId;
@@ -149,12 +167,16 @@ router.get("/api/user/most-view-product/:userId", async (req, res, next) => {
          `SELECT product_id, COUNT(*) AS view_count FROM user_product_view_log WHERE user_id=? GROUP BY product_id ORDER BY COUNT(*) DESC LIMIT 10`,
          userId
       );
+
       customResponse.success(res, { productList });
    } catch (error) {
       next(error);
    }
 });
 
+/**
+ * Track user's viewed product
+ */
 router.post("/api/user/track-product-view", async (req, res, next) => {
    try {
       const params = pick(req.body, ["userId", "productId"]);
